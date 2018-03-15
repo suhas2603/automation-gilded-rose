@@ -28,50 +28,69 @@ Then(/^None of the results are more that £15$/) do
   end
 end
 
-When(/^I click on books$/) do
-  @page.click_on_books_category
+When(/^I click on more$/) do
+  find(:xpath, '//*[@id="hdtb-msb"]/div[1]/g-header-menu/a').click
+  sleep(1)
+end
+
+And (/^I click on books$/) do
+  @page.verify_books
 end
 
 Then(/^the results are all books$/) do
-  search = find('div._Gwj.std')
+  search = find('div.hdtb-mitem.hdtb-msel.hdtb-imb')
   if search.text != 'Books'
     fail
   end
 end
 
 When(/^I click on Ocado$/) do
-  find(:xpath, '//*[@id="leftnavc"]/div/div[5]/div[2]/div[4]/a').click
-  sleep(2)
+  find(:xpath, '//*[@id="leftnavc"]/div/div[4]/div/div[2]/div[2]/a').click
+  sleep(1)
 end
 
 Then(/^the results are for Ocado$/) do
-  @page.verify_shopping('Ocado')
+  @page.verify_seller_ocado('Ocado')
+  sleep(1)
 end
 
 When(/^I click more$/) do
-  pending
+  find(:xpath, '//*[@id="leftnavc"]/div/div[4]/div/div[5]').click
+  sleep(1)
 end
 
-And(/^I click on Eat big$/) do
-  pending
+And(/^I click on Eatbig$/) do
+  find(:xpath, '//*[@id="leftnavc"]/div/div[3]/div/div[2]/div[1]/a').click
+  sleep(1)
 end
 
-Then(/^the results are for Eat big$/) do
-  pending
+Then(/^the results are for Eatbig$/) do
+  @page.verify_seller_eatbig('Eatbig')
+  sleep(1)
 end
 
 When(/^I enter £20$/) do
-  pending
+  within find(:xpath, '//*[@id="leftnavc"]/div/div[3]/div/div[2]/form/div[1]/label/input') do
+    input = find(:xpath, '//*[@name="lower"]')
+    input.send_keys("20")
+  end
+  sleep(1)
 end
 
 And(/^I enter £30$/) do
-  pending
+  within find(:xpath, '//*[@id="leftnavc"]/div/div[3]/div/div[2]/form/div[2]/label/input') do
+    input = find(:xpath, '//*[@name="upper"]')
+    input.send_keys("30")
+  end
+  sleep(1)
 end
 
 And(/^I click go$/) do
-  pending
+  find(:xpath, '//*[@id="leftnavc"]/div/div[3]/div/div[2]/form/button').click
+  sleep(1)
 end
 
-Then(/^the results are all between £20 and £30$/) do |arg|
-  pending
+Then(/^the results are all between £20 and £30$/) do
+  @page.verify_range()
+  sleep(2)
 end
