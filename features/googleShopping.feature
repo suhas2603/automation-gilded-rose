@@ -14,23 +14,24 @@ Feature: Google shopping filters
     Given I am on the google shopping page
     And I search for "Marmite"
     Then I get "Marmite" results
-    When I click on books
+    When I click on more
+    And I click on books
     Then the results are all books
 
-  Scenario: I can find products sold by Tesco
+  Scenario: I can find products sold by Ocado
     Given I am on the google shopping page
     And I search for "Marmite"
     Then I get "Marmite" results
     When I click on Ocado
     Then the results are for Ocado
 
-  Scenario: I can find products sold by Eat big
+  Scenario: I can find products sold by Eatbig
     Given I am on the google shopping page
     And I search for "Marmite"
     Then I get "Marmite" results
     When I click more
-    And I click on Eat big
-    Then the results are for Eat big
+    And I click on Eatbig
+    Then the results are for Eatbig
 
   Scenario: I can find products between £20 and £30
     Given I am on the google shopping page
